@@ -1,5 +1,5 @@
 Terminals:
-+ = - * / % < > = ! ' " number string variable true false ( ) : if elif else from import is not in as class def return for range while with and or , print continue break pass raise
++ = - * / % < > = ! ' " number string variable true false ( ) : if elif else from import is not in as class def return for range while with and or , print continue break pass raise open
 Variables:
 S MULTIVAR VAR VAL OPS RELATION BOOLEAN STRING CONTENT COMMENT BRACKET PRINT CLASS DEF RETURN IF ELIF ELSE CONDITIONAL CONTINUE IMPORT FROM FORLOOP RANGE WHILELOOP WITH BREAK CONTINUE PASS RAISE
 Productions:
