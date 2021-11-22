@@ -1,13 +1,12 @@
 Terminals:
-+ = - * / % < > = ! ' " number string variable true false ( ) : from import is not in on as class def # for range while with
++ = - * / % < > = ! ' " number string variable true false ( ) : from import is not in on as class def # for range while with and or ,
 Variables:
-S MULTIVAR VAR VAL NUMBER OPS RELATION BOOLEAN STRING CONTENT COMMENT BRACKET PRINT CLASS DEF RETURN IF ELIF ELSE CONDITIONAL CONTINUE IMPORT FROM FORLOOP WHILELOOP WITH
+S MULTIVAR VAR VAL OPS RELATION BOOLEAN STRING CONTENT COMMENT BRACKET PRINT CLASS DEF RETURN IF ELIF ELSE CONDITIONAL CONTINUE IMPORT FROM FORLOOP RANGE WHILELOOP WITH
 Productions:
 S -> S S | VAR = MULTIVAR | VAR + = MULTIVAR | VAR - = MULTIVAR | VAR * = MULTIVAR | VAR / = MULTIVAR | IF | PRINT | WHILELOOP | FORLOOP | DEF | CLASS | IMPORT | FROM | COMMENT | WITH; 
 MULTIVAR -> VAR | VAL | MULTIVAR OPS MULTIVAR | MULTIVAR , MULTIVAR | not MULTIVAR;
 VAR -> variable;
-VAL -> NUMBER | MULTIVAR OPS MULTIVAR | MULTIVAR * * MULTIVAR | MULTIVAR / / MULTIVAR | ( MULTIVAR ) | BOOLEAN | STRING | none;
-NUMBER -> number | NUMBER OPS NUMBER;
+VAL -> number | MULTIVAR OPS MULTIVAR | MULTIVAR * * MULTIVAR | MULTIVAR / / MULTIVAR | ( MULTIVAR ) | BOOLEAN | STRING | none;
 OPS -> * | + | - | / | %;
 RELATION -> > | < | = = | < = | > = | ! =;
 BOOLEAN -> true | false | BOOLEAN and BOOLEAN | BOOLEAN or BOOLEAN | not BOOLEAN | MULTIVAR is MULTIVAR | MULTIVAR RELATION MULTIVAR ;
@@ -24,8 +23,12 @@ ELSE -> else : S;
 ELIF -> elif CONDITIONAL | ELIF ELIF | ELIF ELSE | ELIF RAISE | ELIF BREAK | ELIF PASS | ELIF CONTINUE;
 CONDITIONAL -> ( BOOLEAN ) : S | BOOLEAN : S;
 CONTINUE -> continue;
+BREAK -> break;
+PASS -> pass;
+RAISE -> raise BRACKET;
 IMPORT -> import VAR as VAR | import VAR;
 FROM -> from VAR IMPORT;
-FORLOOP -> for VAR in range ( NUMBER ) : S | for VAR in range ( NUMBER , NUMBER ) : S | for VAR in range ( NUMBER , NUMBER , NUMBER ) : S | FOR VAR IN STRING : S;
+FORLOOP -> for VAR in STRING : S | for VAR in RANGE : S;
+RANGE -> range BRACKET;
 WHILELOOP -> while BOOLEAN : S;
-WITH -> with VAR BRACKET as VAR : S
+WITH -> with open BRACKET as VAR
