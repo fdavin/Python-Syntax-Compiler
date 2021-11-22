@@ -1,0 +1,31 @@
+Terminals:
++ = - * / % < > = ! ' " number string variable true false ( ) : from import is not in on as class def # for range while with
+Variables:
+S MULTIVAR VAR VAL NUMBER OPS RELATION BOOLEAN STRING CONTENT COMMENT BRACKET PRINT CLASS DEF RETURN IF ELIF ELSE CONDITIONAL CONTINUE IMPORT FROM FORLOOP WHILELOOP WITH
+Productions:
+S -> S S | VAR = MULTIVAR | VAR + = MULTIVAR | VAR - = MULTIVAR | VAR * = MULTIVAR | VAR / = MULTIVAR | IF | PRINT | WHILELOOP | FORLOOP | DEF | CLASS | IMPORT | FROM | COMMENT | WITH; 
+MULTIVAR ->  VAR | VAL | MULTIVAR OPS MULTIVAR | INPUT | MULTIVAR , MULTIVAR | not MULTIVAR;
+VAR -> variable;
+VAL -> NUMBER | MULTIVAR OPS MULTIVAR | MULTIVAR * * MULTIVAR | MULTIVAR / / MULTIVAR | ( MULTIVAR ) | BOOLEAN | STRING | none;
+NUMBER -> number | NUMBER OPS NUMBER;
+OPS -> * | + | - | / | %;
+RELATION -> > | < | = = | < = | > = | ! =;
+BOOLEAN -> true | false | BOOLEAN and BOOLEAN | BOOLEAN or BOOLEAN | not BOOLEAN | MULTIVAR is MULTIVAR | MULTIVAR is not MULTIVAR | MULTIVAR RELATION MULTIVAR ;
+STRING -> " string " | ' string ' | STRING + STRING;
+CONTENT -> VAR | CONTENT CONTENT;
+COMMENT -> " " " CONTENT " " " | ' ' ' CONTENT ' ' ' | # CONTENT;
+BRACKET -> ( MULTIVAR ) | ( );
+PRINT -> print BRACKET;
+CLASS -> class VAR : S;
+DEF -> def VAR BRACKET : S | DEF RETURN;
+RETURN -> return VAL | return BOOLEAN;
+IF -> if CONDITIONAL | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE;
+ELSE -> else : S;
+ELIF -> elif CONDITIONAL | ELIF ELIF | ELIF ELSE | ELIF RAISE | ELIF BREAK | ELIF PASS | ELIF CONTINUE;
+CONDITIONAL -> ( BOOLEAN ) : S | BOOLEAN : S;
+CONTINUE -> continue;
+IMPORT -> import VAR as VAR | import VAR;
+FROM -> from VAR IMPORT;
+FORLOOP -> for VAR in range ( NUMBER ) : S | for VAR in range ( NUMBER , NUMBER ) : S | for VAR in range ( NUMBER , NUMBER , NUMBER ) : S | FOR VAR IN STRING : S;
+WHILELOOP -> while BOOLEAN : S;
+WITH -> with VAR BRACKET as VAR : S;
