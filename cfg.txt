@@ -15,7 +15,7 @@ RETURN -> return BOOLEAN | return VAL;
 CLASS -> class VAR : S;
 IMPORT -> import VAR as VAR | import VAR;
 FROM -> from VAR IMPORT;
-STRING -> " string " | ' string ' | STRING + STRING;
+STRING -> " string " | ' string ' | STRING + STRING | " string . " | ' string . ';
 CONTENT -> VAR | CONTENT CONTENT;
 COMMENT -> " " " CONTENT " " " | ' ' ' CONTENT ' ' ' | # CONTENT;
 BRACKET -> ( MULTIVAR ) | ( );

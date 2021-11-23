@@ -1,4 +1,4 @@
-import sys, helper
+import sys, itertools
 
 left, right = 0, 1
 
@@ -7,6 +7,12 @@ variablesJar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
 "A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "I1", "J1", "K1", "L1", "M1", "N1", "O1", "P1", "Q1", "R1", "S1", "T1", "U1", "W1", "X1", "Y1", "Z1",
 "A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2", "I2", "J2", "K2", "L2", "M2", "N2", "O2", "P2", "Q2", "R2", "S2", "T2", "U2", "W2", "X2", "Y2", "Z2"]
 
+def createDict(productions, variables, terms):
+	result = {}
+	for production in productions:
+		if production[left] in variables and production[right][0] in terms and len(production[right]) == 1:
+			result[production[right][0]] = production[left]
+	return result
 
 def isUnitary(rule, variables):
 	if rule[left] in variables and rule[right][0] in variables and len(rule[right]) == 1:
@@ -20,32 +26,29 @@ def isSimple(rule):
 	else :
 		return False
 
-
 for nonTerminal in V:
 	if nonTerminal in variablesJar:
 		variablesJar.remove(nonTerminal)
 
-#Add S0->S rule––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––START
+# Add S0->S rule
 def START(productions, variables):
 	variables.append('S0')
 	return [('S0', [variables[0]])] + productions
-#Remove rules containing both terms and variables, like A->Bc, replacing by A->BZ and Z->c–––––––––––TERM
+# Remove rules containing both terms and variables, like A->Bc, replacing by A->BZ and Z->c
 def TERM(productions, variables):
 	newProductions = []
-	#create a dictionari for all base production, like A->a, in the form dic['a'] = 'A'
-	dictionary = helper.setupDict(productions, variables, terms=K)
+	# create a dictionary for all variables production, example : Break -> break;
+	dictionary = createDict(productions, variables, K)
 	for production in productions:
-		#check if the production is simple
 		if isSimple(production):
-			#in that case there is nothing to change
 			newProductions.append(production)
 		else:
 			for term in K:
 				for index, value in enumerate(production[right]):
 					if term == value and not term in dictionary:
-						#it's created a new production vaiable->term and added to it 
+						# Created a new production variable->term and added to it 
 						dictionary[term] = variablesJar.pop()
-						#Variables set it's updated adding new variable
+						# Variables set is updated by adding new variable
 						V.append(dictionary[term])
 						newProductions.append( (dictionary[term], [term]) )
 						
@@ -54,15 +57,14 @@ def TERM(productions, variables):
 						production[right][index] = dictionary[term]
 			newProductions.append( (production[left], production[right]) )
 			
-	#merge created set and the introduced rules
+	# merge created set and the introduced rules
 	return newProductions
 
-#Eliminate non unitry rules––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––BIN
+#Eliminate non unitry rules
 def BIN(productions, variables):
 	result = []
 	for production in productions:
 		k = len(production[right])
-		#newVar = production[left]
 		if k <= 2:
 			result.append( production )
 		else:
@@ -70,7 +72,6 @@ def BIN(productions, variables):
 			variables.append(newVar+'1')
 			result.append( (production[left], [production[right][0]]+[newVar+'1']) )
 			i = 1
-#TODO
 			for i in range(1, k-2 ):
 				var, var2 = newVar+str(i), newVar+str(i+1)
 				variables.append(var2)
@@ -78,14 +79,36 @@ def BIN(productions, variables):
 			result.append( (newVar+str(k-2), production[right][k-2:k]) ) 
 	return result
 	
+def findOutlaws(target, productions):
+	outlaws, newproduct = [],[]
+	for production in productions:
+		if target in production[right] and len(production[right]) == 1:
+			outlaws.append(production[left])
+		else:
+			newproduct.append(production)		
+	return outlaws, newproduct
 
-#Delete non terminal rules–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––DEL
+def rewrite(target, production):
+	result = []
+	#get positions corresponding to the occurrences of target in production right side
+	#positions = [m.start() for m in re.finditer(target, production[right])]
+	positions = [i for i,x in enumerate(production[right]) if x == target]
+	#for all found targets in production
+	for i in range(len(positions)+1):
+ 		#for all combinations of all possible lenght phrases of targets
+ 		for element in list(itertools.combinations(positions, i)):
+ 			#Example: if positions is [1 4 6]
+ 			#now i've got: [] [1] [4] [6] [1 4] [1 6] [4 6] [1 4 6]
+ 			#erease position corresponding to the target in production right side
+ 			tadan = [production[right][i] for i in range(len(production[right])) if i not in element]
+ 			if tadan != []:
+ 				result.append((production[left], tadan))
+	return result
+
+#Delete non terminal rules
 def DEL(productions):
-	newSet = []
-	#seekAndDestroy throw back in:
-	#        – outlaws all left side of productions such that right side is equal to the outlaw
-	#        – productions the productions without outlaws 
-	outlaws, productions = helper.seekAndDestroy(target='e', productions=productions)
+	newSet = [] 
+	outlaws, productions = findOutlaws('e', productions)
 	#add new reformulation of old rules
 	for outlaw in outlaws:
 		#consider every production: old + new resulting important when more than one outlaws are in the same prod.
@@ -94,7 +117,7 @@ def DEL(productions):
 			if outlaw in production[right]:
 				#the rule is rewrited in all combination of it, rewriting "e" rather than outlaw
 				#this cycle prevent to insert duplicate rules
-				newSet = newSet + [e for e in  helper.rewrite(outlaw, production) if e not in newSet]
+				newSet = newSet + [e for e in  rewrite(outlaw, production) if e not in newSet]
 
 	#add unchanged rules and return
 	return newSet + ([productions[i] for i in range(len(productions)) 
@@ -134,13 +157,50 @@ def convertToMap (Production):
 			s = s + Productions[i][1][j]
 		CNF.update({s : Productions[i][0]})
 
+
+def cleanAlphabet(expression):
+	return expression.replace('  ',' ').split(' ')
+
+def cleanProduction(expression):
+	result = []
+	#remove spaces and explode on ";"
+	rawRulse = expression.replace('\n','').split(';')
+	
+	for rule in rawRulse:
+		#Explode evry rule on "->" and make a couple
+		leftSide = rule.split(' -> ')[0].replace(' ','')
+		rightTerms = rule.split(' -> ')[1].split(' | ')
+		for term in rightTerms:
+			result.append( (leftSide, term.split(' ')) )
+	return result
+
+def loadModel(modelPath):
+	file = open(modelPath).read()
+	K = (file.split("Variables:\n")[0].replace("Terminals:\n","").replace("\n",""))
+	V = (file.split("Variables:\n")[1].split("Productions:\n")[0].replace("Variables:\n","").replace("\n",""))
+	P = (file.split("Productions:\n")[1])
+
+	return cleanAlphabet(K), cleanAlphabet(V), cleanProduction(P)
+
+def writeFormat(rules):
+	dictionary = {}
+	for rule in rules:
+		if rule[left] in dictionary:
+			dictionary[rule[left]] += ' | '+' '.join(rule[right])
+		else:
+			dictionary[rule[left]] = ' '.join(rule[right])
+	result = ""
+	for key in dictionary:
+		result += key+" -> "+dictionary[key]+"\n"
+	return result
+
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
 		modelPath = str(sys.argv[1])
 	else:
 		modelPath = 'cfg.txt'
 	
-	K, V, Productions = helper.loadModel( modelPath )
+	K, V, Productions = loadModel( modelPath )
 
 	Productions = START(Productions, variables=V)
 	Productions = TERM(Productions, variables=V)
@@ -149,4 +209,4 @@ if __name__ == '__main__':
 	Productions = UNIT(Productions, variables=V)
 	convertToMap(Productions)
 	print("CNF created to cnf.txt")
-	open('cnf.txt', 'w').write(	helper.prettyForm(Productions) )
+	open('cnf.txt', 'w').write(	writeFormat(Productions) )
