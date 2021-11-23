@@ -15,13 +15,14 @@ file = open(filePath, 'r')
 text = file.read()
 
 # tokenized code
-tokenized = re.findall(r"\w+(?:'\w+)*|[^\w\s]", text)
-result = [x for x in tokenized]
-
+delete_com = re.sub(r"([^\"]#.*$)", "", text, flags = re.M)
+tokenized = re.findall(r"\w+(?:'\w+)*|[^\w\s]", delete_com)
+print(delete_com)
+#print(tokenized)
 cyk.LoadCNF("cnf.txt")
 
 # CYK
-table = cyk.cyk(result)
+table = cyk.cyk(tokenized)
 
 if (cyk.checkValidity(table, "S")):
     print("Verdict accepted! Compile success!")

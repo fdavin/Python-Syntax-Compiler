@@ -6,11 +6,6 @@ from matplotlib import numpy as np
 def gon(art):
     print('null')
  
-def neraca(bobot):
-    for i in "neraca":
-        i+=1
-    return i
-# testing
 
 class nullity:
     def nonil():
@@ -75,3 +70,12 @@ myvar = "John"
 
 if(x==1):
     print('a is a')
+
+def neraca(bobot):
+    for i in "neraca": # 2testing = 5
+        i+=1
+    return i
+# 2testing = 4
+a = "apa ya"
+a = 'apa'
+a = 5
