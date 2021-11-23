@@ -1,34 +1,35 @@
 Terminals:
-+ = - * / % < > = ! ' " number string variable true false ( ) : if elif else from import is not in as class def return for range while with and or , print continue break pass raise open
++ - * / % and or variable number is ! not = > < ( ) # True False string ' " if elif else : print input str float int double while for in range def class import as from return raise range , break pass continue with open .read .write
 Variables:
-S MULTIVAR VAR VAL OPS RELATION BOOLEAN STRING CONTENT COMMENT BRACKET PRINT CLASS DEF RETURN IF ELIF ELSE CONDITIONAL CONTINUE IMPORT FROM FORLOOP RANGE WHILELOOP WITH BREAK CONTINUE PASS RAISE
+S MULTIVAR VAR VAL BOOLEAN OPS STRING IF ELIF ELSE PRINT CONDITIONAL RELATION INPUT BRACKET TYPE WHILE FOR RANGE DEF CLASS IMPORT FROM RETURN RAISE WITH RANGE BREAK PASS CONTINUE COMMENT CONTENT WITHVAR
 Productions:
-S -> S S | VAR = MULTIVAR | VAR + = MULTIVAR | VAR - = MULTIVAR | VAR * = MULTIVAR | VAR / = MULTIVAR | IF | PRINT | WHILELOOP | FORLOOP | DEF | CLASS | IMPORT | FROM | COMMENT; 
-MULTIVAR ->  VAR | VAL | MULTIVAR OPS MULTIVAR | INPUT | MULTIVAR , MULTIVAR | WITH;
+S -> S S | VAR = MULTIVAR | VAR + = MULTIVAR | VAR - = MULTIVAR | VAR * = MULTIVAR | VAR / = MULTIVAR | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT | WITH; 
+MULTIVAR ->  VAR | VAL | MULTIVAR OPS MULTIVAR | INPUT | MULTIVAR , MULTIVAR;
 VAR -> variable;
-VAL -> number | MULTIVAR OPS MULTIVAR | MULTIVAR * * MULTIVAR | MULTIVAR / / MULTIVAR | ( MULTIVAR ) | BOOL | STRING;
-OPS -> * | + | - | / | %;
-RELATION -> > | < | = = | < = | > = | ! =;
-BOOLEAN -> true | false | BOOLEAN and BOOLEAN | BOOLEAN or BOOLEAN | not BOOLEAN | MULTIVAR is MULTIVAR | MULTIVAR RELATION MULTIVAR;
+VAL -> number | MULTIVAR OPS MULTIVAR | MULTIVAR * * MULTIVAR | MULTIVAR / / MULTIVAR | ( MULTIVAR ) | BOOLEAN | STRING;
+RELATION -> > | < | = = | ! = | < = | > =;
+BOOLEAN -> True | False | BOOLEAN and BOOLEAN | BOOLEAN or BOOLEAN | not BOOLEAN | MULTIVAR is MULTIVAR | MULTIVAR RELATION MULTIVAR;
+OPS -> + | - | * | / | %;
+DEF -> def VAR BRACKET : S | DEF RETURN;
+RETURN -> return BOOLEAN | return VAL;
+CLASS -> class VAR : S;
+IMPORT -> import VAR as VAR | import VAR;
+FROM -> from VAR IMPORT;
 STRING -> " string " | ' string ' | STRING + STRING;
 CONTENT -> VAR | CONTENT CONTENT;
 COMMENT -> " " " CONTENT " " " | ' ' ' CONTENT ' ' ' | # CONTENT;
 BRACKET -> ( MULTIVAR ) | ( );
 PRINT -> print BRACKET;
-CLASS -> class VAR : S;
-DEF -> def VAR BRACKET : S | DEF RETURN;
-RETURN -> return VAL | return BOOLEAN;
 IF -> if CONDITIONAL | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE;
-ELSE -> else : S;
-ELIF -> elif CONDITIONAL | ELIF ELIF | ELIF ELSE | ELIF RAISE | ELIF BREAK | ELIF PASS | ELIF CONTINUE;
 CONDITIONAL -> ( BOOLEAN ) : S | BOOLEAN : S;
-CONTINUE -> continue;
+RAISE -> raise BRACKET;
 BREAK -> break;
 PASS -> pass;
-RAISE -> raise BRACKET;
-IMPORT -> import VAR as VAR | import VAR;
-FROM -> from VAR IMPORT;
-FORLOOP -> for VAR in STRING : S | for VAR in RANGE : S;
+CONTINUE -> continue;
+ELIF -> elif CONDITIONAL | ELIF ELIF | ELIF ELSE | ELIF RAISE | ELIF BREAK | ELIF PASS | ELIF CONTINUE;
+ELSE -> else : S | ELSE RAISE | ELSE BREAK | ELSE PASS | ELSE CONTINUE;
 RANGE -> range BRACKET;
-WHILELOOP -> while BOOLEAN : S;
-WITH -> with open BRACKET as VAR
+FOR -> for VAR in STRING : S | for VAR in RANGE : S;
+WITH -> with open ( STRING , STRING ) as VAR : VAR = WITHVAR | with open ( STRING , STRING ) as VAR : VAR = WITHVAR;
+WITHVAR -> VAR .read BRACKET | VAR .write BRACKET;
+WHILE -> while CONDITIONAL

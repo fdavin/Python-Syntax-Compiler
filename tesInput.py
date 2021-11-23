@@ -10,36 +10,42 @@ def neraca(bobot):
     for i in "neraca":
         i+=1
     return i
- 
+# testing
+
 class nullity:
     def nonil():
-        rom = 15
+        rom = 1
     def kripto(a):
         a+=1
     class jir:
         g = 1
 
-if not true:
+if not True:
     a+=1
     raise ("asdfg")
-if not true:
+elif not True:
     a+=1
     break
-if not true:
+else :
     a+=1
     pass
-if not true:
+if not True:
     a+=1
     continue
-
-a = len("niki")
 
 for i in range(9,3,1):
     i+=9
 
-print("aasd.","asd","asd")
+while x>5:
+    x += 1
 
-a = with open(FILE_OUTPUT_NAME, 'asdf') as f_out
+print("aasd","asd","asd")
+
+with open('bruh', 'asdf') as f_out:
+    a = a .read()
+
+with open('bruh', 'asdf') as f_out:
+    a = a .write('haha')
 
 """asdf"""
 '''asdfghjmnbas
@@ -48,4 +54,4 @@ dfghjmnb'''
 '''asdfghj'''
 
 """asdfghjmnbasas
-asdfgh."""
+asdfgh"""

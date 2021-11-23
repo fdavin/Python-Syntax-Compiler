@@ -18,7 +18,7 @@ text = file.read()
 tokenized = re.findall(r"\w+(?:'\w+)*|[^\w\s]", text)
 result = [x for x in tokenized if x != '.']
 
-cyk.LoadCNF("cnfBaru.txt")
+cyk.LoadCNF("cnf.txt")
 
 # CYK
 table = cyk.cyk(result)
