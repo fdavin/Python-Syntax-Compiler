@@ -55,5 +55,20 @@ dfghjmnb'''
 """asdfghjmnbasas
 asdfgh"""
 
+a = "a a"
+
 var = foo()
 c = var.method()
+''' tes sadas is not for while haha
+'''
+def do_something(x):
+    if x == 0:
+        return 1
+
+myvar = "John"
+my_var = "John"
+_my_var = "John"
+myVar = "John"
+MYVAR = "John"
+myvar2 = "John"
+print("for while loop is haha")

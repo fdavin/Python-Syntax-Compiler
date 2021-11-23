@@ -3,7 +3,7 @@ Terminals:
 Variables:
 S MULTIVAR VAR VAL BOOLEAN OPS STRING STRING2 IF ELIF ELSE PRINT CONDITIONAL RELATION INPUT BRACKET TYPE WHILE FOR RANGE DEF CLASS IMPORT FROM RETURN RAISE WITH RANGE BREAK PASS CONTINUE COMMENT CONTENT WITHVAR METHOD
 Productions:
-S -> S S | VAR = MULTIVAR | VAR + = MULTIVAR | VAR - = MULTIVAR | VAR * = MULTIVAR | VAR / = MULTIVAR | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT | WITH | METHOD; 
+S -> S S | VAR = MULTIVAR | VAR + = MULTIVAR | VAR - = MULTIVAR | VAR * = MULTIVAR | VAR / = MULTIVAR | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT | WITH | METHOD | RETURN; 
 MULTIVAR ->  VAR | VAL | MULTIVAR OPS MULTIVAR | INPUT | MULTIVAR , MULTIVAR;
 VAR -> variable;
 VAL -> number | MULTIVAR OPS MULTIVAR | MULTIVAR * * MULTIVAR | MULTIVAR / / MULTIVAR | ( MULTIVAR ) | BOOLEAN | STRING;
@@ -16,9 +16,9 @@ CLASS -> class VAR : S;
 IMPORT -> import VAR as VAR | import VAR;
 FROM -> from VAR IMPORT;
 STRING -> " STRING2 " | ' STRING2 ' | STRING + STRING;
-STRING2 -> string | . | STRING2 STRING2;
+STRING2 -> + | - | * | / | % | and | or | variable | number | is | ! | not | = | > | < | ( | ) | # | True | False | string | ' | " | if | elif | else | : | print | input | str | float | int | double | while | for | in | range | def | class | import | as | from | return | raise | range | , | break | pass | continue | with | open | . | read | write | STRING2 STRING2 | CONTENT;
 CONTENT -> VAR | CONTENT CONTENT;
-COMMENT -> " " " CONTENT " " " | ' ' ' CONTENT ' ' ' | # CONTENT;
+COMMENT -> " " " STRING2 " " " | ' ' ' STRING2 ' ' ' | # STRING2;
 BRACKET -> ( MULTIVAR ) | ( );
 PRINT -> print BRACKET;
 IF -> if CONDITIONAL | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE;
