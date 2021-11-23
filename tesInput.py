@@ -39,7 +39,7 @@ for i in range(9,3,1):
 while x>5:
     x += 1
 
-print("aasd","asd","asd.")
+print(".aas..d","a.s..d","asd.")
 
 with open('bruh', 'asdf') as f_out:
     a = a.read()
