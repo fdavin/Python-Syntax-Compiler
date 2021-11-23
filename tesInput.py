@@ -23,7 +23,7 @@ class nullity:
 if not True:
     a+=1
     raise ("asdfg")
-elif not True:
+elif(not True):
     a+=1
     break
 else :
@@ -39,7 +39,7 @@ for i in range(9,3,1):
 while x>5:
     x += 1
 
-print(".aas..d","a.s..d","asd.")
+print(".aas..d","a.s..d","asd. hi halo heaea")
 
 with open('bruh', 'asdf') as f_out:
     a = a.read()
@@ -54,3 +54,6 @@ dfghjmnb'''
 
 """asdfghjmnbasas
 asdfgh"""
+
+var = foo()
+c = var.method()

@@ -163,11 +163,11 @@ def cleanAlphabet(expression):
 
 def cleanProduction(expression):
 	result = []
-	#remove spaces and explode on ";"
+	#remove spaces and stop on ";"
 	rawRulse = expression.replace('\n','').split(';')
 	
 	for rule in rawRulse:
-		#Explode evry rule on "->" and make a couple
+		# stop every rule on "->" create multiple production if there are more than 1 term on a variable
 		leftSide = rule.split(' -> ')[0].replace(' ','')
 		rightTerms = rule.split(' -> ')[1].split(' | ')
 		for term in rightTerms:
@@ -201,7 +201,6 @@ if __name__ == '__main__':
 		modelPath = 'cfg.txt'
 	
 	K, V, Productions = loadModel( modelPath )
-
 	Productions = START(Productions, variables=V)
 	Productions = TERM(Productions, variables=V)
 	Productions = BIN(Productions, variables=V)
