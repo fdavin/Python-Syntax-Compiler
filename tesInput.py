@@ -59,7 +59,7 @@ a = "a a"
 
 var = foo()
 c = var.method()
-''' tes sadas is not for while haha
+''' tes sadas
 '''
 def do_something(x):
     if x == 0:
@@ -71,6 +71,7 @@ _my_var = "John"
 myVar = "John"
 MYVAR = "John"
 myvar2 = "John"
-print("for while loop is haha")
+myvar = "John"
 
-raise ('tes')
+if(x==1):
+    print('a is a')
