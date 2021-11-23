@@ -42,10 +42,9 @@ while x>5:
 print("aasd","asd","asd")
 
 with open('bruh', 'asdf') as f_out:
-    a = a .read()
-
+    a = a.read()
 with open('bruh', 'asdf') as f_out:
-    a = a .write('haha')
+    a = a.write('haha')
 
 """asdf"""
 '''asdfghjmnbas

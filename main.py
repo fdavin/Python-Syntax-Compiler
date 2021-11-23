@@ -16,7 +16,7 @@ text = file.read()
 
 # tokenized code
 tokenized = re.findall(r"\w+(?:'\w+)*|[^\w\s]", text)
-result = [x for x in tokenized if x != '.']
+result = [x for x in tokenized]
 
 cyk.LoadCNF("cnf.txt")
 
