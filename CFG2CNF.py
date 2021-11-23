@@ -34,10 +34,10 @@ for nonTerminal in V:
 def START(productions, variables):
 	variables.append('S0')
 	return [('S0', [variables[0]])] + productions
+
 # Remove rules containing both terms and variables, like A->Bc, replacing by A->BZ and Z->c
 def TERM(productions, variables):
 	newProductions = []
-	# create a dictionary for all variables production, example : Break -> break;
 	dictionary = createDict(productions, variables, K)
 	for production in productions:
 		if isSimple(production):
@@ -46,18 +46,14 @@ def TERM(productions, variables):
 			for term in K:
 				for index, value in enumerate(production[right]):
 					if term == value and not term in dictionary:
-						# Created a new production variable->term and added to it 
 						dictionary[term] = variablesJar.pop()
-						# Variables set is updated by adding new variable
 						V.append(dictionary[term])
 						newProductions.append( (dictionary[term], [term]) )
-						
 						production[right][index] = dictionary[term]
 					elif term == value:
 						production[right][index] = dictionary[term]
 			newProductions.append( (production[left], production[right]) )
 			
-	# merge created set and the introduced rules
 	return newProductions
 
 #Eliminate non unitry rules
@@ -90,16 +86,9 @@ def findOutlaws(target, productions):
 
 def rewrite(target, production):
 	result = []
-	#get positions corresponding to the occurrences of target in production right side
-	#positions = [m.start() for m in re.finditer(target, production[right])]
 	positions = [i for i,x in enumerate(production[right]) if x == target]
-	#for all found targets in production
 	for i in range(len(positions)+1):
- 		#for all combinations of all possible lenght phrases of targets
  		for element in list(itertools.combinations(positions, i)):
- 			#Example: if positions is [1 4 6]
- 			#now i've got: [] [1] [4] [6] [1 4] [1 6] [4 6] [1 4 6]
- 			#erease position corresponding to the target in production right side
  			tadan = [production[right][i] for i in range(len(production[right])) if i not in element]
  			if tadan != []:
  				result.append((production[left], tadan))
@@ -109,14 +98,11 @@ def rewrite(target, production):
 def DEL(productions):
 	newSet = [] 
 	outlaws, productions = findOutlaws('e', productions)
-	#add new reformulation of old rules
 	for outlaw in outlaws:
-		#consider every production: old + new resulting important when more than one outlaws are in the same prod.
 		for production in productions + [e for e in newSet if e not in productions]:
-			#if outlaw is present in the right side of a rule
+			# if outlaw is present in the right side of a rule
 			if outlaw in production[right]:
-				#the rule is rewrited in all combination of it, rewriting "e" rather than outlaw
-				#this cycle prevent to insert duplicate rules
+				# the rule is rewrited in all combination of it, rewriting "e" rather than outlaw
 				newSet = newSet + [e for e in  rewrite(outlaw, production) if e not in newSet]
 
 	#add unchanged rules and return

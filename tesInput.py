@@ -22,7 +22,7 @@ class nullity:
 
 if not True:
     a+=1
-    raise ("asdfg")
+    raise TypeError("asdfg")
 elif(not True):
     a+=1
     break
@@ -72,3 +72,5 @@ myVar = "John"
 MYVAR = "John"
 myvar2 = "John"
 print("for while loop is haha")
+
+raise ('tes')

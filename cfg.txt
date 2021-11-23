@@ -23,7 +23,7 @@ BRACKET -> ( MULTIVAR ) | ( );
 PRINT -> print BRACKET;
 IF -> if CONDITIONAL | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE;
 CONDITIONAL -> ( BOOLEAN ) : S | BOOLEAN : S;
-RAISE -> raise BRACKET;
+RAISE -> raise VAR BRACKET;
 BREAK -> break;
 PASS -> pass;
 CONTINUE -> continue;
