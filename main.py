@@ -27,7 +27,7 @@ cyk.LoadCNF("cnf.txt")
 # CYK
 table = cyk.cyk(tokenized)
 
-if (cyk.checkValidity(table, "S")):
+if (table):
     print("Verdict accepted! Compile success!")
 else:
     print("Compile error, wrong syntax!")

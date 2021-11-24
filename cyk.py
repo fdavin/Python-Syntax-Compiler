@@ -11,25 +11,13 @@ regexMap = {
     r'[A-Za-z_][A-Za-z_0-9]*' : ["variable"],
 }
 
-# Grammar in CNF form
-# "PREDCON":["PRINT"],
-# "print":["PRED"],
-# "DUCKFUDGE":["CON"],
-# "DUCKGORILLA":["CON"],
-# "EGGFUDGE":["GORILLA"],
-# "(":["DUCK"],
-# "string":["EGG"],
-# ")":["FUDGE"],
-
-
 # Load CNF File
-global chomskyGrammar
 chomskyGrammar = {}
 
 def LoadCNF(modelPath):
     file = open(modelPath).read()
     rawRules = file.split('\n')
-    # print(len(rawRules))
+    print(len(rawRules))
     for i in range (len(rawRules)-1):
         A = rawRules[i].split(' -> ')[0]
         B = rawRules[i].split(' -> ')[1]
@@ -41,14 +29,11 @@ def LoadCNF(modelPath):
                 chomskyGrammar.update({C[j] : [A]})
             else :
                 chomskyGrammar[C[j]].append(A)
-    # print(chomskyGrammar)
 
 # Returns CYK table from tokenized input
 def cyk(tokenizedInput):
-
     # Initialize CYK Table
     cykTable = [[[] for j in range(i)] for i in range(len(tokenizedInput),0,-1)]
-
     # Initialize first row (Bottom-Up DP base case)
     for i in range(len(tokenizedInput)):
         # If key valid..
@@ -57,8 +42,6 @@ def cyk(tokenizedInput):
         # If key invalid..
         except KeyError:
             for pattern in regexList:
-                # x = re.match(pattern, tokenizedInput[i])
-                # print(x)
                 if(re.match(pattern, tokenizedInput[i])):
                     for regexType in regexMap[pattern]:
                         try:
@@ -77,9 +60,9 @@ def cyk(tokenizedInput):
                             cykTable[i][j]=chomskyGrammar[production1+production2]
                         except KeyError:
                             continue
-                    
-    return cykTable
+    
+    return ("S" in cykTable[-1][-1])
 
 # Check if table valid
-def checkValidity(table, wanted):
-    return wanted in table[-1][-1]
+#def checkValidity(table, wanted):
+#    return wanted in table[-1][-1]
