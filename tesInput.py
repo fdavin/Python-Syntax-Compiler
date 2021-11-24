@@ -71,7 +71,6 @@ def do_something(x):
     else:
         return "doodoo"
 
-A = x + 2
 myvar = "John"
 my_var = "John"
 _my_var = "John"
@@ -81,15 +80,11 @@ myvar2 = "John"
 myvar = "John"
 
 #Illegal variable names:
-<<<<<<< HEAD
 # 2myvar = "John"
-=======
- 2myvar = "John"
->>>>>>> 384b9acc5c27803f897a43ff87237d367ab878f1
 # my-var = "John"
 # my var = "John" # buat ini gak bisa dicheck sama checkNamingvariable
-
-if(x==1):
+a = x + 2
+if(True + True):
     print('a is a')
 
 def neraca(bobot):
@@ -100,3 +95,6 @@ def neraca(bobot):
 a = "apa ya"
 a = 'apa'
 a = 5
+
+if (X+2==x):
+    print(a)
