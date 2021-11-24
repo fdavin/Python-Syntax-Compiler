@@ -57,9 +57,21 @@ c = var.method()
 ''' tes sadas
 '''
 def do_something(x):
+    ''' this is a sample multiline comment
+    '''
     if x == 0:
-        return 1
+        return 0
+    elif x == 1:
+        if True:
+            return 2
+        else:
+            return 2
+    elif x == 32:
+        return 4
+    else:
+        return "doodoo"
 
+A = x + 2
 myvar = "John"
 my_var = "John"
 _my_var = "John"
@@ -70,7 +82,7 @@ myvar = "John"
 
 #Illegal variable names:
 # 2myvar = "John"
-my-var = "John"
+# my-var = "John"
 # my var = "John" # buat ini gak bisa dicheck sama checkNamingvariable
 
 if(x==1):
