@@ -1,5 +1,4 @@
 import re
-import pprint as pp
 
 # Regex List
 regexList = [r'[A-z0-9]*', r'[0-9]*', r'[A-Za-z_][A-Za-z_0-9]*']
@@ -17,7 +16,6 @@ chomskyGrammar = {}
 def LoadCNF(modelPath):
     file = open(modelPath).read()
     rawRules = file.split('\n')
-    print(len(rawRules))
     for i in range (len(rawRules)-1):
         A = rawRules[i].split(' -> ')[0]
         B = rawRules[i].split(' -> ')[1]
@@ -62,7 +60,3 @@ def cyk(tokenizedInput):
                             continue
     
     return ("S" in cykTable[-1][-1])
-
-# Check if table valid
-#def checkValidity(table, wanted):
-#    return wanted in table[-1][-1]

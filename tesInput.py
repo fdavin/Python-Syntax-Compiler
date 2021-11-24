@@ -69,8 +69,8 @@ myvar2 = "John"
 myvar = "John"
 
 #Illegal variable names:
-# 2myvar = "John"
-my-var = "John"
+ 2myvar = "John"
+# my-var = "John"
 # my var = "John" # buat ini gak bisa dicheck sama checkNamingvariable
 
 if(x==1):

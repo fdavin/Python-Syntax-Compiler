@@ -5,7 +5,6 @@ if len(sys.argv) == 2:
     filePath = str(sys.argv[1])
 else:
     filePath = 'tesInputVar.py'
-
 file = open(filePath, 'r')
 text = file.read()
 

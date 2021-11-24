@@ -19,18 +19,15 @@ text = file.read()
 # tokenized code
 delete_com = re.sub(r"([^\"]#.*$)", "", text, flags = re.M)
 tokenized = re.findall(r"\w+(?:'\w+)*|[^\w\s]", delete_com)
-#print(delete_com)
-# print(tokenized)
-
-cyk.LoadCNF("cnf.txt")
 
 # CYK
+cyk.LoadCNF("cnf.txt")
 table = cyk.cyk(tokenized)
-
 if (table):
     print("Verdict accepted! Compile success!")
 else:
     print("Compile error, wrong syntax!")
 
+# checking variabel name using DFA
 variables = tokVar.tokenizedVar(text)
 var.checkingNamingVariable(variables)
