@@ -1,12 +1,13 @@
-x = 230
+def fungsi(var):
+    x+=1
+    return 3
 
-if x <= 4:
-    x += 5
-    if True:
-        x -=2
-    elif False:
-        x -=3
-elif x >= 1:
-    break
-else:
-    raise TypeError("Wrong input.")
+class classify:
+    def makeclass(classname):
+        classmade = "K01"
+        return classmade
+b = "tes123"
+a = fungsi(b)
+
+with open('folderku', 'r') as file:
+    x = file.read("tes123")
