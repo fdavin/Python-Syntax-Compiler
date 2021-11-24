@@ -3,7 +3,7 @@
 > by Kelompok 17 K1 (seadanya-sebisanya).
 
 ## General Information
-Program syntax parsing untuk file python menggunakan algoritma CYK (Cocke–Younger–Kasami) dan Context-free Grammars (CFG) yang telah diubah ke bentuk Chomsky Normal Form (CNF).
+Program syntax parsing untuk file python menggunakan algoritma CYK (Cocke–Younger–Kasami) dan Context-free Grammars (CFG) yang telah diubah ke bentuk Chomsky Normal Form (CNF). Selain itu dapat pula untuk melakukan pengecekan nama variabel dengan menggunakan Deterministic Finite Autoamata (DFA)
 
 ## Usage
 1. Clone repository ini.
@@ -11,9 +11,8 @@ Program syntax parsing untuk file python menggunakan algoritma CYK (Cocke–Youn
 ```python
 python CFG2CNF.py cfg.txt
 ```
-3. Masukkan file python yang ingin dicek sintaksnya dalam satu directory dengan clone repository dan jalankan salah satu code di bawah ini sesuai input file. Jika program tidak meneriman masukan input file maka akan otomatis mencari file dengan nama "tesInput.py" yang ada pada 1 folder bersama file
+3. Masukkan file python yang ingin dicek sintaksnya dalam satu directory dengan clone repository dan jalankan code di bawah ini sesuai input file. Jika program tidak meneriman masukan input file maka akan otomatis mencari file dengan nama "tesInput.py" yang berada pada 1 folder bersama file
 ```python
-python main.py <namainputfile.txt>
 python main.py "namainputfile.py"
 ```
 
