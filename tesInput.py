@@ -81,7 +81,11 @@ myvar2 = "John"
 myvar = "John"
 
 #Illegal variable names:
+<<<<<<< HEAD
 # 2myvar = "John"
+=======
+ 2myvar = "John"
+>>>>>>> 384b9acc5c27803f897a43ff87237d367ab878f1
 # my-var = "John"
 # my var = "John" # buat ini gak bisa dicheck sama checkNamingvariable
 

@@ -5,7 +5,6 @@ if len(sys.argv) == 2:
     filePath = str(sys.argv[1])
 else:
     filePath = 'tesInputVar.py'
-
 file = open(filePath, 'r')
 text = file.read()
 
@@ -14,7 +13,7 @@ def tokenizedVar(text):
     delete_com = re.sub(r"([^\"]#.*$)", "", text, flags = re.M)
     lines = re.split(r'[\n\r]+', delete_com)
     operator = ['+', '-', '*', '/']
-    keywords = ['if', 'while']
+    keywords = ['if', 'elif', 'while']
     variables = []
 
     for line in lines:
