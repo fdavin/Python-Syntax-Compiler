@@ -78,20 +78,17 @@ myVar = "John"
 MYVAR = "John"
 myvar2 = "John"
 myvar = "John"
+''' this is a comment
+'''
 
-#Illegal variable names:
-# 2myvar = "John"
-# my-var = "John"
-# my var = "John" # buat ini gak bisa dicheck sama checkNamingvariable
-a = x + 2
+a = "x is 2 and or"
 if(True + True):
     print('a is a')
 
 def neraca(bobot):
-    for i in "neraca": # 2testing = 5
+    for i in "neraca":  
         i+=1
     return i
-# 2testing = 4
 a = "apa ya"
 a = 'apa'
 a = 5

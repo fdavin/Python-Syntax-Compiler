@@ -1,9 +1,9 @@
 Terminals:
-+ - * / % and or variable number is ! not = > < ( ) # True False string ' " if elif else : print while for in range def class import as from return raise range , break pass continue with open . read write
++ - * / % and or variable number is ! not = > < ( ) True False string ' " if elif else : print while for in range def class import as from return raise range , break pass continue with open . read write
 Variables:
-S MULTIVAR VAR VAL BOOLEAN OPS STRING STRING2 IF ELIF ELSE PRINT CONDITIONAL RELATION INPUT BRACKET WHILE FOR RANGE DEF CLASS IMPORT FROM RETURN RAISE WITH RANGE BREAK PASS CONTINUE COMMENT CONTENT WITHVAR METHOD
+S MULTIVAR VAR VAL BOOLEAN OPS STRING STRING2 IF ELIF ELSE PRINT CONDITIONAL RELATION INPUT BRACKET WHILE FOR RANGE DEF CLASS IMPORT FROM RETURN RAISE WITH RANGE BREAK PASS CONTINUE COMMENT WITHVAR METHOD
 Productions:
-S -> S S | VAR = MULTIVAR | VAR + = MULTIVAR | VAR - = MULTIVAR | VAR * = MULTIVAR | VAR / = MULTIVAR | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT | WITH | METHOD | RETURN; 
+S -> S S | VAR = MULTIVAR | VAR + = MULTIVAR | VAR - = MULTIVAR | VAR * = MULTIVAR | VAR / = MULTIVAR | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT | WITH | METHOD | RETURN | BREAK | PASS | CONTINUE | RAISE; 
 MULTIVAR ->  VAR | VAL | MULTIVAR , MULTIVAR | VAR OPS MULTIVAR | MULTIVAR OPS VAR | VAR OPS VAL;
 VAR -> variable;
 VAL -> number | MULTIVAR * * MULTIVAR | MULTIVAR / / MULTIVAR | ( MULTIVAR ) | BOOLEAN | STRING;
@@ -16,9 +16,8 @@ CLASS -> class VAR : S;
 IMPORT -> import VAR as VAR | import VAR;
 FROM -> from VAR IMPORT;
 STRING -> " STRING2 " | ' STRING2 ' | STRING + STRING;
-STRING2 -> string | . | is | STRING2 STRING2 | CONTENT;
-CONTENT -> VAR | CONTENT CONTENT;
-COMMENT -> " " " STRING2 " " " | ' ' ' STRING2 ' ' ' | # STRING2;
+STRING2 -> string | . | is | number | and | or | not | STRING2 STRING2 | CONTENT;
+COMMENT -> " " " STRING2 " " " | ' ' ' STRING2 ' ' ';
 BRACKET -> ( MULTIVAR ) | ( );
 PRINT -> print BRACKET;
 IF -> if CONDITIONAL | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE;

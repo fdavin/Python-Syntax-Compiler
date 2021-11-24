@@ -1,14 +1,12 @@
-def do_something(x):
-    ''' This is a sample multiline comment
-    '''
-    if x == 0:
-        return 0
-    elif x + 4 == 1:
-        if True:
-            return 3
-        else:
-            return 2
-    elif x == 32:
-        return 4
-    else:
-        return "Doodoo"
+x = 230
+
+if x <= 4:
+    x += 5
+    if True:
+        x -=2
+    elif False:
+        x -=3
+elif x >= 1:
+    break
+else:
+    raise TypeError("Wrong input.")
