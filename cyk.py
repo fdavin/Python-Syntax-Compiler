@@ -29,7 +29,7 @@ chomskyGrammar = {}
 def LoadCNF(modelPath):
     file = open(modelPath).read()
     rawRules = file.split('\n')
-    print(len(rawRules))
+    # print(len(rawRules))
     for i in range (len(rawRules)-1):
         A = rawRules[i].split(' -> ')[0]
         B = rawRules[i].split(' -> ')[1]
