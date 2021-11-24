@@ -17,8 +17,10 @@ text = file.read()
 # tokenized code
 delete_com = re.sub(r"([^\"]#.*$)", "", text, flags = re.M)
 tokenized = re.findall(r"\w+(?:'\w+)*|[^\w\s]", delete_com)
-print(delete_com)
-#print(tokenized)
+#print(delete_com)
+print(tokenized)
+
+
 cyk.LoadCNF("cnf.txt")
 
 # CYK

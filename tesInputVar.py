@@ -68,10 +68,10 @@ MYVAR = "John"
 myvar2 = "John"
 myvar = "John"
 
-#Illegal variable names:
-# 2myvar = "John"
-# my-var = "John"
-# my var = "John"
+#Illegal = variable names:
+2myvar = "John"
+my-var = "John"
+my var = "John"
 
 if(x==1):
     print('a is a')
